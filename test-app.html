@@ -1,0 +1,51 @@
+<head>
+  <title>test-app</title>
+</head>
+
+<body>
+  <div class="container">
+    <nav id="mainmenu">
+      <!-- <h3>test-app</h3> -->
+      <ul>
+        <li><span>Menu</span>
+          <ul>
+            {{#each items}}
+              {{> menu}}
+            {{/each}}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      {{#if content.title}}
+        <a href="" id="del" title="delete"></a>
+        {{content.title}}
+        <hr>
+        {{content.desc}}
+      {{else}}
+        <h2>Meteor test app</h2>
+      {{/if}}
+    </div>
+    <div class="input">
+      <form id="new-item" name="item">
+        <input type="text" name="name" placeholder="New {{#if content.title}}sub{{/if}}item"><br>
+        <textarea name="desc" placeholder="Description"></textarea>
+        <button type="submit" name="submit" disabled>Add {{#if content.title}}sub{{/if}}item</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+<template name="menu">
+  <li><a href="">{{title}}</a>
+    {{#if subitems}}
+      <ul>
+        {{#each subitems}}
+          {{> menu}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </li>
+</template>
+
+
